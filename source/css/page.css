@@ -2,7 +2,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * General page setup
  */
+
+ 
+ 
 #dt_crashLogs {
+	background-image:url(../images/blue.png);
 	font: 80%/1.45em "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
@@ -10,9 +14,9 @@
 	background-color: #fff;
 }
 
-
 #dt_crashLogs #container {
-	width: 800px;
+
+	width: 98%;
 	margin: 30px auto;
 	padding: 0;
 }
@@ -32,10 +36,10 @@
 }
 
 #dt_crashLogs .big {
-	font-size: 1.3em;
+	font-size: 1.6em;
 	font-weight: bold;
-	line-height: 1.6em;
-	color: #4E6CA3;
+	line-height: 1.2em;
+	color: #333;
 }
 
 #dt_crashLogs .spacer {
@@ -72,7 +76,6 @@
 }
 
 #dt_crashLogs a {
-	color: #0063DC;
 	text-decoration: none;
 }
 
@@ -95,3 +98,14 @@
 #detailsTable tr {
     vertical-align: top;
 }
+
+ 
+ a {text-decoration: none; }
+ 
+ a.logout {
+     /*color: #4E6CA3;*/
+     color: #333;
+     font-size: 1.3em;
+     text-decoration: none;
+ }
+ 

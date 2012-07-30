@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `ReportContent` (
   `DISPLAY` text,
   `USER_COMMENT` TEXT,
   `USER_APP_START_DATE` timestamp NULL DEFAULT NULL,
-  `USER_CRASH_DATE` timestamp NULL DEFAULT NULL,
+  `USER_CRASH_DATE` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `DUMPSYS_MEMINFO` text,
   `DROPBOX` text,
   `LOGCAT` text,
@@ -35,3 +35,13 @@ CREATE TABLE IF NOT EXISTS `ReportContent` (
   `SETTINGS_SECURE` text,
   PRIMARY KEY (`REPORT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `Users` (
+  `USER_ID` INT NOT NULL AUTO_INCREMENT,
+  `USER_NAME` varchar(50) NOT NULL,
+  `PASSWORD` varchar(50) NOT NULL,
+  `EMAIL` varchar(255) NOT NULL,
+  PRIMARY KEY (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `Users` (user_name, password, email) VALUES ('user', 'password', 'email@domain.com')

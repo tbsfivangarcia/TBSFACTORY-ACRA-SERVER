@@ -3,31 +3,23 @@
  -->
 <?php
 
-function parse_date($date)
-{
-    if (preg_match('/([0-9]{2,4})-([0-9][0-9])-([0-9][0-9])T([0-9][0-9]):([0-9][0-9]):([0-9][0-9])(\.[0-9][0-9][0-9])?(\+|-)([0-9][0-9]):([0-9][0-9])/i', $date, $matches))
-    {
+function parse_date($date) {
+    if (preg_match('/([0-9]{2,4})-([0-9][0-9])-([0-9][0-9])T([0-9][0-9]):([0-9][0-9]):([0-9][0-9])(\.[0-9][0-9][0-9])?(\+|-)([0-9][0-9]):([0-9][0-9])/i', $date, $matches)) {
         return strtotime("$matches[1]-$matches[2]-$matches[3] $matches[4]:$matches[5]:$matches[6] $matches[8]$matches[9]$matches[10]");
     }
 }
 
-function mysql_insert($table, $inserts) 
-{
+function mysql_insert($inserts) {
     $values = array_map('mysql_real_escape_string', array_values($inserts));
     $keys = array_keys($inserts);
-    return mysql_query('INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')');
+    return mysql_query('INSERT INTO `ReportContent` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')');
 }
 
-function saveToDatabase($object)
-{
-	include ("../source/php/db.php");
-	mysql_connect($dbhost,$dbuser,$dbpass);
-	mysql_select_db($dbname);
-
-	$result = mysql_insert($table, $object);
-	if (!$result) {
-    	die('Invalid query: ' . mysql_error());
-	}
+function saveToDatabase($object) {
+	include ("../source/php/connection.php");
+	$result = mysql_insert($object);
+	if (!$result)
+            die('Invalid query: ' . mysql_error());
 	mysql_close();
 }
 

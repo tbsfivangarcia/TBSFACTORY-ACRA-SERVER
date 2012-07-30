@@ -58,8 +58,7 @@ function fnFormatDetails ( oTable, nTr )
 {
     var aData = oTable.fnGetData( nTr );
     var sOut = '<table cellpadding="5" cellspacing="0" border="0" id="detailsTable" >';
-    sOut += '<tr><td>Stack Trace:</td><td>'+aData[6]+'</td></tr>';
-    sOut += '<tr><td>Version Code:</td><td>'+aData[7]+'</td></tr>';
+    sOut += '<tr><td>Stack Trace:</td><td>'+aData[7]+'</td></tr>';
     sOut += '<tr><td>File Patch:</td><td>'+aData[8]+'</td></tr>';
     sOut += '<tr><td>Brand:</td><td>'+aData[9]+'</td></tr>';
     sOut += '<tr><td>Product:</td><td>'+aData[10]+'</td></tr>';
@@ -75,8 +74,8 @@ function fnFormatDetails ( oTable, nTr )
     sOut += '<tr><td>Dumpsys Meminfo:</td><td>'+aData[20]+'</td></tr>';
     sOut += '<tr><td>Dropbox:</td><td>'+aData[21]+'</td></tr>';
     sOut += '<tr><td>Logcat:</td><td>'+aData[22]+'</td></tr>';
-    sOut += '<tr><td>Events Log:</td><td>'+aData[23]+'</td></tr>';
-    sOut += '<tr><td>Radio Log:</td><td>'+aData[24]+'</td></tr>';
+    sOut += '<tr><td>Eventslog:</td><td>'+aData[23]+'</td></tr>';
+    sOut += '<tr><td>Radiolog:</td><td>'+aData[24]+'</td></tr>';
     sOut += '<tr><td>Is Silent:</td><td>'+aData[25]+'</td></tr>';
     sOut += '<tr><td>Device ID:</td><td>'+aData[26]+'</td></tr>';
     sOut += '<tr><td>Installation ID:</td><td>'+aData[27]+'</td></tr>';
@@ -84,7 +83,8 @@ function fnFormatDetails ( oTable, nTr )
     sOut += '<tr><td>Device Features:</td><td>'+aData[29]+'</td></tr>';
     sOut += '<tr><td>Environment:</td><td>'+aData[30]+'</td></tr>';
     sOut += '<tr><td>Shared Preferences:</td><td>'+aData[31]+'</td></tr>';
-    sOut += '<tr><td>Shared Preferences:</td><td>'+aData[32]+'</td></tr>';
+    sOut += '<tr><td>Settings System:</td><td>'+aData[32]+'</td></tr>';
+    sOut += '<tr><td>Settings Secure:</td><td>'+aData[33]+'</td></tr>';
     
     sOut += '</table>';
 				
@@ -97,7 +97,7 @@ $(document).ready(function() {
                  */
     var nCloneTh = document.createElement( 'th' );
     var nCloneTd = document.createElement( 'td' );
-    nCloneTd.innerHTML = '<img src="./source/images/details_open.png">';
+    nCloneTd.innerHTML = '<img src="../images/details_open.png">';
     nCloneTd.className = "center";
 				
     $('#crashTable thead tr').each( function () {
@@ -118,16 +118,12 @@ $(document).ready(function() {
       
         "sPaginationType": "full_numbers",
         
-        "aaSorting": [[5, 'desc']],
+        "aaSorting": [[6, 'desc']],
 
         "aoColumnDefs": [
         {
             "bSortable": false, 
             "aTargets": [ 0 ]
-        },
-        {
-            "bVisible": false, 
-            "aTargets": [ 6 ]
         },
         {
             "bVisible": false, 
@@ -233,6 +229,11 @@ $(document).ready(function() {
             "bVisible": false, 
             "aTargets": [ 32 ]
         }
+        ,
+        {
+            "bVisible": false, 
+            "aTargets": [ 33 ]
+        }
         ]
     });
 
@@ -253,13 +254,13 @@ $(document).ready(function() {
         if ( this.src.match('details_close') )
         {
             /* This row is already open - close it */
-            this.src = "./source/images/details_open.png";
+            this.src = "../images/details_open.png";
             oTable.fnClose( nTr );
         }
         else
         {
             /* Open this row */
-            this.src = "./source/images/details_close.png";
+            this.src = "../images/details_close.png";
             oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
         }
     } );
