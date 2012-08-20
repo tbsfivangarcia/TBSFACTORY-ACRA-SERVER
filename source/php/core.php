@@ -21,9 +21,10 @@ function display_db_query($query_string, $connection, $names) {
     print("<tbody>\n");
 
     while ($row = mysql_fetch_row($result_id)) {
-        print("<tr class=\"gradeA\">");
+        print("<tr class=\"odd gradeA\">");
         for ($column_number = 0; $column_number < $column_count; $column_number++) {
-            print("<td>$row[$column_number]</td>\n");
+            $cuttext = wordwrap($row[$column_number], 100, "\n", true);
+            print("<td>$cuttext</td>\n");
         }
         print("</tr>\n");
     }
@@ -34,16 +35,19 @@ function display_db_query($query_string, $connection, $names) {
     print "<tfoot>\n";
 
     print("<tr>\n");
+    print("<th></th>\n");
     for ($column_number = 0; $column_number < $column_count; $column_number++) {
-        $field_name = $names[$column_number];
-        print("<th>$field_name</th>\n");
+                $field_name = $names[$column_number];
+                print("<th>$field_name</th>\n");
+                
+                
     }
     print("</tr>\n");
 
     print "</tfoot>\n";
 }
 
-function display_db_table($tablename, $connection, $names) {
+function display_db_table($connection, $names) {
     $fields = array("PACKAGE_NAME", "APP_VERSION_NAME", "APP_VERSION_CODE","ANDROID_VERSION", "PHONE_MODEL", "USER_CRASH_DATE",
         "STACK_TRACE", "FILE_PATH", "BRAND", "PRODUCT", "BUILD", "TOTAL_MEM_SIZE", "AVAILABLE_MEM_SIZE", "CUSTOM_DATA",
         "INITIAL_CONFIGURATION", "CRASH_CONFIGURATION", "DISPLAY", "USER_COMMENT", "USER_APP_START_DATE", "DUMPSYS_MEMINFO",

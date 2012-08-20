@@ -151,7 +151,7 @@ table.display thead th div.DataTables_sort_wrapper span {
  */
 table.display {
 	margin: 0 auto;
-	width: 100%;
+	width: auto;
 	clear: both;
 	border-collapse: collapse;
 }
@@ -291,7 +291,7 @@ tr.even {
 
 tfoot input {
 	margin: 0.5em 0;
-	width: 100%;
+	width: auto;
 	color: #444;
 }
 
@@ -495,4 +495,26 @@ tr.even.gradeU td.sorting_3 {
 
 .ex_highlight #crashTable tbody tr.odd:hover, #crashTable tbody tr.odd td.highlighted {
 	background-color: #E6FF99;
+}
+
+
+/** La clave */
+select {
+-webkit-appearance: menulist;
+box-sizing: border-box;
+-webkit-box-align: center;
+border: 1px solid;
+border-image: initial;
+white-space: pre;
+-webkit-rtl-ordering: logical;
+color: black;
+background-color: white;
+cursor: default;
+width: auto;
+height: 28px;
+}
+
+.center  img {
+    width: 22px;
+    height: 22px;
 }
